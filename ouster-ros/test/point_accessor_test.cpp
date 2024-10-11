@@ -45,9 +45,9 @@ class PointAccessorTest : public ::testing::Test {
         };
 
         pt_os_point = ouster_ros::_Point{
-            {0.0f, 1.0f, 2.0f},   // x, y, z, w
-            3.0f, 4,                    // intensity, t,
-            5, 6, 7, 8                  // reflectivity, ring, ambient, range
+             0.0f, 1.0f, 2.0f,   // x, y, z, w
+            3,                     // intensity, t,
+            5, 6,                     // reflectivity, ring, ambient, range
         };
     }
 
