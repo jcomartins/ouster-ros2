@@ -76,7 +76,7 @@ void transform(PointTGT& tgt_pt, const PointSRC& src_pt) {
     // PointTGT should not have signal and intensity at the same time [normally]
     CondBinaryOp<has_intensity_v<PointTGT> && has_signal_v<PointSRC>>::run(
         tgt_pt, src_pt, [](auto& tgt_pt, const auto& src_pt) {
-            tgt_pt.intensity = static_cast<decltype(tgt_pt.intensity)>(src_pt.signal);
+            tgt_pt.intensity = static_cast<int>(src_pt.signal)>>5;
         }
     );
 
