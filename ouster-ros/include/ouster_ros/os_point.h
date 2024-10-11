@@ -19,14 +19,13 @@ namespace ouster_ros {
 // struct uses float data type to represent intensity (aka signal); however, the
 // sensor sends the signal channel either as UINT16 or UINT32 depending on the
 // active udp lidar profile.
-struct EIGEN_ALIGN16 _Point {
-    PCL_ADD_POINT4D;
-    float intensity;        // equivalent to signal
-    uint32_t t;
-    uint16_t reflectivity;
+struct EIGEN_ALIGN8 _Point {
+    float x;
+    float y;
+    float z;
+    uint8_t intensity;        // equivalent to signal
+    uint8_t return_type;
     uint16_t ring;          // equivalent to channel
-    uint16_t ambient;       // equivalent to near_ir
-    uint32_t range;
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 };
 
@@ -34,32 +33,24 @@ struct Point : public _Point {
 
     inline Point(const _Point& pt)
     {
-      x = pt.x; y = pt.y; z = pt.z; data[3] = 1.0f;
+      x = pt.x; y = pt.y; z = pt.z;
       intensity = pt.intensity;
-      t = pt.t;
-      reflectivity = pt.reflectivity; 
       ring = pt.ring;
-      ambient = pt.ambient;
-      range = pt.range;
     }
 
     inline Point()
     {
-      x = y = z = 0.0f; data[3] = 1.0f;
+      x = y = z = 0.0f; 
       intensity = 0.0f;
-      t = 0;
-      reflectivity = 0;
       ring = 0;
-      ambient = 0;
-      range = 0;
     }
 
     inline const auto as_tuple() const {
-        return std::tie(x, y, z, intensity, t, reflectivity, ring, ambient, range);
+        return std::tie(x, y, z, intensity, ring);
     }
 
     inline auto as_tuple() {
-        return std::tie(x, y, z, intensity, t, reflectivity, ring, ambient, range);
+        return std::tie(x, y, z, intensity, ring);
     }
 
     template<size_t I>
@@ -77,12 +68,7 @@ POINT_CLOUD_REGISTER_POINT_STRUCT(ouster_ros::Point,
     (float, x, x)
     (float, y, y)
     (float, z, z)
-    (float, intensity, intensity)
-    (std::uint32_t, t, t)
-    (std::uint16_t, reflectivity, reflectivity)
-    (std::uint16_t, ring, ring)
-    (std::uint16_t, ambient, ambient)
-    (std::uint32_t, range, range)
+    (std::uint8_t, intensity, intensity)
+    (std::uint8_t, return_type, return_type)
+    (std::uint16_t, ring, channel)
 )
-
-// clang-format on
