@@ -162,7 +162,7 @@ The equivalent python launch file is:
 ros2 launch ouster_ros driver.launch.py    \
     params_file:=<path to params yaml file>
 ```
-If you don't pass a `params_file` then the file located at `ouster/config/driver_params.yaml` will be used. Note that in
+If you don't pass a `params_file` then the file located at `../../param/driver_params.yaml` will be used. Note that in
 the params you can start with default options for everything except the `sensor_hostname` param which you should adjust
 to match the hostname or ip address of the Ouster sensor you are trying to connect to.
 
@@ -270,7 +270,7 @@ connection, reset the sensor and reconnect again.
 > Changing settings is not yet fully support during a reset operation (more on this)
 
 ### Driver Parameters
-Add a `driver_params.yaml` to `../../param` example
+Add a `driver_params.yaml` to `../../param`.
 The driver has several parameters that allow you to customize its behavior, all of
 these parameters are defined with the `driver_params.yaml` file found under `config`
 folder. The only required parameter is `sensor_hostname` which sets the sensor
