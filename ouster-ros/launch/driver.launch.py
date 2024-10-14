@@ -23,9 +23,9 @@ def generate_launch_description():
     Generate launch description for running ouster_ros components separately each
     component will run in a separate process).
     """
-    ouster_ros_pkg_dir = get_package_share_directory('ouster_ros')
+    ouster_ros_pkg_dir = get_package_share_directory('harvey_perception_bringup')
     default_params_file = \
-        Path(ouster_ros_pkg_dir) /'..'/'..'/'..'/ 'param' / 'driver_params.yaml'
+        Path(ouster_ros_pkg_dir) /'param' / 'driver_params.yaml'
     params_file = LaunchConfiguration('params_file')
     params_file_arg = DeclareLaunchArgument('params_file',
                                             default_value=str(
