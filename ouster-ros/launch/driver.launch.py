@@ -85,19 +85,11 @@ def generate_launch_description():
         )
     )
 
-    rviz_launch_file_path = \
-        Path(ouster_ros_pkg_dir) / 'launch' / 'rviz.launch.py'
-    rviz_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([str(rviz_launch_file_path)]),
-        condition=IfCondition(rviz_enable)
-    )
 
     return launch.LaunchDescription([
         params_file_arg,
         ouster_ns_arg,
-        rviz_enable_arg,
         os_driver_name_arg,
-        rviz_launch,
         os_driver,
         sensor_configure_event,
         sensor_activate_event,
