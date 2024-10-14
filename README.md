@@ -114,8 +114,7 @@ To build the driver using ROS2 you need to clone the project into the `src` fold
 workspace as shown below:
 
 ```bash
-mkdir -p ros2_ws/src && cd ros2_ws/src
-git clone -b ros2 --recurse-submodules https://github.com/jcomartins/ouster-ros.git
+git clone -b ros2 --recurse-submodules https://github.com/jcomartins/ouster-ros.git harvey_perception/sensing
 ```
 
 Next to compile the driver you need to source the ROS environemt into the active termainl:
@@ -271,6 +270,7 @@ connection, reset the sensor and reconnect again.
 > Changing settings is not yet fully support during a reset operation (more on this)
 
 ### Driver Parameters
+Add a `driver_params.yaml` to `../../param` example
 The driver has several parameters that allow you to customize its behavior, all of
 these parameters are defined with the `driver_params.yaml` file found under `config`
 folder. The only required parameter is `sensor_hostname` which sets the sensor
