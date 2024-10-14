@@ -115,6 +115,7 @@ workspace as shown below:
 
 ```bash
 git clone -b ros2 --recurse-submodules https://github.com/jcomartins/ouster-ros.git harvey_perception/sensing
+cp ouster-ros/ouster-ros/config/driver_params.yaml ../param/
 ```
 
 Next to compile the driver you need to source the ROS environemt into the active termainl:
